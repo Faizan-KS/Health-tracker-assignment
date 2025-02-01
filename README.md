@@ -6,7 +6,7 @@ This an activity tracker app that helps manage user's activity.
 3. The user can also use the activity filter to get the information in the table
 4. The user can add MULTIPLE activities to his records by entering the username and acitivity he chooses 
 
-DISCLAIMER : I don't have much idea in testing field but i tried and you can check the report by using "ng test" & ng test --code-coverage
+DISCLAIMER : I don't have much idea in testing field but i tried and you can check the report by using "ng test" & "ng test --code-coverage"
 Results: 6/11 tests passed
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
