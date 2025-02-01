@@ -1,0 +1,150 @@
+<div class="m-20">
+  <!-- Inputs -->
+  <div class="border-b pb-10">
+    <form action="">
+      <div class="mx-20 my-10 grid grid-cols-3">
+        <!-- Name Input -->
+        <div class="">
+          <label
+            >Username<br />
+            <input
+              type="text"
+              name="username"
+              autocomplete="name"
+              [(ngModel)]="userObj.name"
+              class="p-1 rounded-md border-2"
+              placeholder="Enter name"
+            />
+          </label>
+          <div *ngIf="nameError" class="text-red-500 text-sm">{{ nameError }}</div>
+        </div>
+
+        <!-- Activity Select -->
+        <div class="text-center">
+          <label
+            >Activity <br />
+            <select
+              class="p-1 w-1/2 rounded-md border-2"
+              name="activity"
+              [(ngModel)]="selectedActivity"
+            >
+              <option selected disabled value="">Select</option>
+              <option *ngFor="let activ of activityList" [value]="activ">{{ activ }}</option>
+            </select>
+          </label>
+          <div *ngIf="activityError" class="text-red-500 text-sm">{{ activityError }}</div>
+        </div>
+
+        <!-- Duration Input -->
+        <div class="text-right">
+          <label class=""
+            >Duration (minutes)<br />
+            <input
+              type="number"
+              name="number"
+              [(ngModel)]="userObj.duration"
+              class="p-1 rounded-md border-2"
+              placeholder="5"
+            />
+          </label>
+          <div *ngIf="durationError" class="text-red-500 text-sm">{{ durationError }}</div>
+        </div>
+      </div>
+    </form>
+    <div class="text-center">
+      <button
+        class="bg-green-700 p-2 rounded-md text-white"
+        (click)="createNewUser()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+
+  <!-- Search & Select -->
+  <div class="mx-20 m-10">
+    <div class="grid grid-cols-2">
+      <div class="">
+        <input
+          type="text"
+          class="w-1/2 p-1 rounded-md border-2"
+          placeholder="Search"
+          [(ngModel)]="searchName"
+          name="searchName"
+        />
+      </div>
+      <div class="text-right">
+        <select class="w-1/2 p-1 rounded-md border-2" [(ngModel)]="searchActivity">
+          <option selected value="">All</option>
+          <option *ngFor="let activ of activityList" name="searchActivity">{{ activ }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="mx-20 mb-8">
+    <div class="relative overflow-auto border-t shadow-md">
+      <table class="w-full text-left">
+        <thead class="uppercase border-b">
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Activity</th>
+            <th scope="col" class="px-6 py-3">No.of Activities</th>
+            <th scope="col" class="px-6 py-3">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Display paginated and filtered data -->
+          <tr *ngFor="let item of paginatedData" class="border-b">
+            <td class="px-6 py-4">{{ item.name }}</td>
+            <td class="px-6 py-4">{{ item.activity }}</td>
+            <td class="px-6 py-4">{{ item.no }}</td>
+            <td class="px-6 py-4">{{ item.duration }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mx-20 mt-8 flex justify-center">
+      <nav>
+        <ul class="inline-flex -space-x-px text-sm">
+          <!-- Previous Button -->
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-center px-3 h-8 ms-0 leading-tight border border-e-0 rounded-s-lg"
+              (click)="previousPage()"
+              [class.disabled]="currentPage === 1"
+            >
+              Prev
+            </a>
+          </li>
+          <!-- Page Numbers -->
+          <li *ngFor="let page of getPageNumbers()">
+            <a
+              href="#"
+              class="flex items-center justify-center px-3 h-8 leading-tight border"
+              [class.active]="page === currentPage"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
+            </a>
+          </li>
+          <!-- Next Button -->
+          <li>
+            <a
+              href="#"
+              class="flex items-center justify-center px-3 h-8 leading-tight border border-s-0 rounded-e-lg"
+              (click)="nextPage()"
+              [class.disabled]="currentPage === totalPages"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
