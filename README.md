@@ -1,5 +1,11 @@
 # FyleAssignment
 
+This an activity tracker app that helps manage user's activity.
+1. The user can enter his username, activity type and duration and record his activites in a table.
+2. The table also contains a search functionality where users can enter username and find this records
+3. The user can also use the activity filter to get the information in the table
+4. The user can add MULTIPLE activities to his records by entering the username and acitivity he chooses 
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
 ## Development server
